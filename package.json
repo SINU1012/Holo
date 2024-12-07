@@ -1,7 +1,6 @@
 {
   "name": "holo_project",
   "version": "1.0.0",
-  "main": "index.js",
   "scripts": {
     "build": "parcel build index.html"
   },
@@ -10,7 +9,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "babylonjs": "^5.0.0-alpha.65"
+    "babylonjs": "^6.0.0"
   },
   "devDependencies": {
     "parcel": "^2.13.2"
