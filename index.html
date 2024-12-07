@@ -22,15 +22,21 @@
   </head>
   <body>
     <canvas id="renderCanvas"></canvas>
-    <!-- CDN에서 Babylon.js 로드 -->
-    <script src="https://cdn.babylonjs.com/babylon.js"></script>
-    <script>
-      const canvas = document.getElementById("renderCanvas");
-      const engine = new BABYLON.Engine(canvas, true);
-      const scene = new BABYLON.Scene(engine);
+    <script type="module">
+      import {
+        Engine,
+        Scene,
+        ArcRotateCamera,
+        HemisphericLight,
+        MeshBuilder,
+      } from "babylonjs";
 
-      // 카메라 설정 (ArcRotateCamera를 BABYLON 전역으로 접근)
-      const camera = new BABYLON.ArcRotateCamera(
+      const canvas = document.getElementById("renderCanvas");
+      const engine = new Engine(canvas, true);
+      const scene = new Scene(engine);
+
+      // 카메라 설정
+      const camera = new ArcRotateCamera(
         "Camera",
         Math.PI / 2,
         Math.PI / 4,
@@ -40,15 +46,11 @@
       );
       camera.attachControl(canvas, true);
 
-      // 조명 (HemisphericLight도 BABYLON 전역으로)
-      const light = new BABYLON.HemisphericLight(
-        "light1",
-        BABYLON.Vector3.Up(),
-        scene
-      );
+      // 조명
+      const light = new HemisphericLight("light1", BABYLON.Vector3.Up(), scene);
 
-      // 박스 생성 (MeshBuilder도 BABYLON 네임스페이스 내에 존재)
-      const box = BABYLON.MeshBuilder.CreateBox("box", {}, scene);
+      // 박스 생성
+      const box = MeshBuilder.CreateBox("box", {}, scene);
 
       engine.runRenderLoop(() => {
         scene.render();
